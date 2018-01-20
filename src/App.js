@@ -7,10 +7,22 @@ import CommentTest from './commentTest.js';
 import { Button, Header, Image, Modal, Container } from 'semantic-ui-react'
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    console.log('hello');
+
+    this.onNodeDialogLoad = this.onNodeDialogLoad.bind(this);
+  };
+
+  onNodeDialogLoad() {
+    console.log('loaded');
+  };
+
+
   render() {
     return (
       <div className="App">
-        <Modal trigger={<Button>Can I get a yeet.</Button>}>
+        <Modal trigger={<Button>Can I get a yeet.</Button>} onOpen = {this.onNodeDialogLoad}>
           <Modal.Header>Vission > Music > YeetMachine.tm</Modal.Header>
           <Modal.Content>
             <Modal.Description>
@@ -20,7 +32,8 @@ class App extends Component {
                 <CommentTest/>
               </Container>
             </Modal.Description>
-          </Modal.Content>
+           </Modal.Content>  
+
         </Modal>
         
       </div>
