@@ -6,7 +6,8 @@ class CommentTest extends Component {
   render() {
     return (
       <div>
-        <div style={ background-color: "grey" }>
+        <div>
+          <p> Oof ouch owie </p>
         </div>
       </div>
     );
