@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { Sigma, RelativeSize } from 'react-sigma';
+import ReactDOM from 'react-dom';
 
+import NodeMap from './nodeMap.js'
 import CommentTest from './commentTest.js';
 
 import { Button, Header, Image, Modal, Container } from 'semantic-ui-react'
@@ -9,15 +12,22 @@ import { Button, Header, Image, Modal, Container } from 'semantic-ui-react'
 class App extends Component {
   constructor(props) {
     super(props);
-    console.log('hello');
+    
+    this.state = {
+      var: 0
+    };
 
     this.onNodeDialogLoad = this.onNodeDialogLoad.bind(this);
+    this.loadSigmaRender = this.loadSigmaRender.bind(this);
   };
 
   onNodeDialogLoad() {
     console.log('loaded');
   };
 
+  loadSigmaRender() {
+    ReactDOM.render(<NodeMap/>, document.getElementById('nodemap'));
+  };
 
   render() {
     return (
@@ -33,9 +43,10 @@ class App extends Component {
               </Container>
             </Modal.Description>
            </Modal.Content>  
-
         </Modal>
-        
+        <Button onClick={this.loadSigmaRender}>Load</Button>
+
+        <div id="nodemap"></div>
       </div>
     );
   }
