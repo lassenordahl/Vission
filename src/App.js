@@ -25,12 +25,14 @@ class App extends Component {
     // Default state
     this.state = {
       nodes: {},
-      newNodes: {}
+      newNodes: {},
+      sidebarVisible: true
     };
 
     this.onNodeDialogLoad = this.onNodeDialogLoad.bind(this);
     this.loadSigmaRender = this.loadSigmaRender.bind(this);
     this.helper = this.helper.bind(this);
+    this.toggleVisibility = this.toggleVisibility.bind(this);
   };
 
   helper(nodes) {
@@ -126,15 +128,19 @@ class App extends Component {
     ReactDOM.render(<NodeMap nodes={this.state.newNodes}/>, document.getElementById('nodeMap'));
   };
 
-  toggleVisibility = () => this.setState({ visible: !this.state.visible })
+  toggleVisibility() {
+    console.log('toggle');
+    this.setState({ 
+      sidebarVisible: !this.state.sidebarVisible 
+    });
+  };
 
   render() {
-    const {visible} = this.state
     return (
       <div className="App">
-        <Button onClick={this.state.toggleVisibility}/>
+        <Button onClick={this.toggleVisibility}/>
         <Sidebar.Pushable as={Segment}>
-          <Sidebar as={Menu} animation='overlay' width='thin' visible={true} icon='labeled' vertical inverted>
+          <Sidebar as={Menu} animation='overlay' width='thin' visible={this.state.sidebarVisible} icon='labeled' vertical inverted>
             <Menu.Item name='home'>
               <a href='#'> <img src={logo}/> </a>
             </Menu.Item>
