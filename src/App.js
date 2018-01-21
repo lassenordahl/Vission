@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import logo from './img/resize.png';
 import './App.css';
 import { Sigma, RelativeSize } from 'react-sigma';
 import ReactDOM from 'react-dom';
@@ -24,12 +24,13 @@ class App extends Component {
 
     // Default state
     this.state = {
-      nodes: []
+      nodes: {},
+      newNodes: {}
     };
 
     this.onNodeDialogLoad = this.onNodeDialogLoad.bind(this);
-    this.loadNodeDialog = this.loadNodeDialog.bind(this);
     this.loadSigmaRender = this.loadSigmaRender.bind(this);
+    this.helper = this.helper.bind(this);
   };
 
   helper(nodes) {
@@ -68,6 +69,8 @@ class App extends Component {
       }
     */
 
+    console.log(nodes);
+
     var new_nodes = {
       "nodes" : [],
       "edges" : []
@@ -78,9 +81,9 @@ class App extends Component {
 
       new_node.id = node;
       new_node.label = nodes[node].title;
-      new_node.size = nodes[node].popularity;
-      new_node.x = 0;
-      new_node.y = 0;
+      new_node.size = nodes[node].popularity * 3;
+      new_node.x = Math.random() * .1;
+      new_node.y = Math.random() * .1;
 
       new_nodes.nodes.push(new_node);
     }
@@ -99,8 +102,10 @@ class App extends Component {
         }
       }
     }
-
-    return new_nodes;
+    this.setState({
+      newNodes: new_nodes
+    });
+    this.loadSigmaRender();
   };
 
   componentDidMount() {
@@ -109,7 +114,7 @@ class App extends Component {
       this.setState({
         nodes: snap.val()
       });
-      console.log(this.helper(this.state.nodes));
+      this.helper(this.state.nodes);
     });
   }
 
@@ -117,37 +122,34 @@ class App extends Component {
     console.log('loaded');
   };
 
-  loadNodeDialog() {
-    ReactDOM.render(<NodeDialog/>, document.getElementById('nodeDialog'));
+  loadSigmaRender() {
+    ReactDOM.render(<NodeMap nodes={this.state.newNodes}/>, document.getElementById('nodeMap'));
   };
 
-  loadSigmaRender() {
-    ReactDOM.render(<NodeMap/>, document.getElementById('nodeMap'));
-  };
+  toggleVisibility = () => this.setState({ visible: !this.state.visible })
 
   render() {
+    const {visible} = this.state
     return (
       <div className="App">
         <Sidebar.Pushable as={Segment}>
           <Sidebar as={Menu} animation='overlay' width='thin' visible={true} icon='labeled' vertical inverted>
             <Menu.Item name='home'>
-              Account Information
+              <a href={this.toggleVisibility}> <img src={logo}/> </a>
             </Menu.Item>
             <Menu.Item name='gamepad'>
-              Games
+              <a href='#'>Log In</a>
             </Menu.Item>
             <Menu.Item name='camera'>
-              Channels
+              <a href='#'>Create Account</a>
+            </Menu.Item>
+            <Menu.Item name='camera'>
+              <a href='#'>About</a>
             </Menu.Item>
           </Sidebar>
           <Sidebar.Pusher>
             <Segment basic>
-              <Header as='h3'>Application Content</Header>
-                <Button onClick={this.loadNodeDialog}>Load NodeDialog</Button>
-                <Button onClick={this.loadSigmaRender}>Load Sigma</Button>
-
-                <div id="nodeDialog"></div>
-                <div id="nodeMap"></div>
+              <div id="nodeMap"></div>
             </Segment>
           </Sidebar.Pusher>
         </Sidebar.Pushable>

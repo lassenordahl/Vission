@@ -12,56 +12,18 @@ import { Button, Header, Image, Modal, Container } from 'semantic-ui-react'
 class NodeMap extends Component {
   constructor(props) {
     super(props);
-    
+
+    console.log(props.nodes);
+
     this.state = {
-      testNodeData: {
-        "nodes": [
-          {
-            "id": "n0",
-            "label": "A node",
-            "x": 0,
-            "y": 0,
-            "size": 3
-          },
-          {
-            "id": "n1",
-            "label": "Another node",
-            "x": 3,
-            "y": 1,
-            "size": 2
-          },
-          {
-            "id": "n2",
-            "label": "And a last one",
-            "x": 1,
-            "y": 3,
-            "size": 1
-          }
-        ],
-        "edges": [
-          {
-            "id": "e0",
-            "source": "n0",
-            "target": "n1"
-          },
-          {
-            "id": "e1",
-            "source": "n1",
-            "target": "n2"
-          },
-          {
-            "id": "e2",
-            "source": "n2",
-            "target": "n0"
-          }
-        ]
-      },
+      nodeData: props.nodes,
       nodeID: null
     };
 
     this.onNodeDialogLoad = this.onNodeDialogLoad.bind(this);
     this.testIDLog = this.testIDLog.bind(this);
     this.closeNodeDialog = this.closeNodeDialog.bind(this);
+    this.testLog = this.testLog.bind(this);
   };
 
   testIDLog(ev) {
@@ -69,6 +31,10 @@ class NodeMap extends Component {
       nodeID: ev.data.node.id
     });
     this.loadNodeDialog();
+  };
+
+  testLog() {
+    console.log(this.props);
   };
 
   loadNodeDialog() {
@@ -87,7 +53,7 @@ class NodeMap extends Component {
     return (
       <div>
         <div id="nodeDialog"></div>
-        <Sigma onClickNode={this.testIDLog} style={{maxWidth:"-webkit-fill-available", height:"-webkit-fill-available", textAlign: "-webkit-auto"}} settings={{drawEdges:true}} graph={this.state.testNodeData}></Sigma>
+        <Sigma onClickNode={this.testIDLog} style={{maxWidth:"-webkit-fill-available", height:"-webkit-fill-available", textAlign: "-webkit-auto"}} settings={{drawEdges:true}} graph={this.state.nodeData}></Sigma>
       </div>
       );
   }
