@@ -5,7 +5,6 @@ import ReactDOM from 'react-dom';
 
 import { Button, Header, Image, Modal, Container, Sidebar, Segment, Menu, Icon, Tab, Form, TextArea } from 'semantic-ui-react'
 
-import { Col, Row } from 'react-flexbox-grid'
 
 class NodeMessages extends Component {
   constructor(props) {
@@ -50,11 +49,9 @@ class NodeMessages extends Component {
 
   handleChange(ev) {  
     console.log(ev);
-    /*
     this.setState({
       message: ev.target.value
-    })
-    */
+    });
   };
 
   render() {
@@ -66,12 +63,14 @@ class NodeMessages extends Component {
     var messageList = this.state.messagesArray.map(function(value) {
       return (
         <div>
+          <div className="column">
           <div className="initialIcon">
             <p className="initial">{getInitial(value.name).toUpperCase()}</p>
           </div>
           <div key={value.text}>
             <h3 className="commentName">{value.name}</h3>
             <p className="commentText">{value.text}</p>
+          </div>
           </div>
         </div>
       );
@@ -83,7 +82,7 @@ class NodeMessages extends Component {
       	{messageList}
         </div>
         <Form>
-          <TextArea value={this.state.message} onChange={this.handleChange} placeholder='Contribute to the Vission' />
+          <Input fluid value={this.state.message} onChange={this.handleChange} placeholder='Join the Vission' />
           <Button onClick={this.submit} color='purple'>Submit</Button>
         </Form>
       </div>
