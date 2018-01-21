@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import logo from './img/resize.png';
 import './App.css';
 import { Sigma, RelativeSize } from 'react-sigma';
 import ReactDOM from 'react-dom';
@@ -126,19 +126,25 @@ class App extends Component {
     ReactDOM.render(<NodeMap nodes={this.state.newNodes}/>, document.getElementById('nodeMap'));
   };
 
+  toggleVisibility = () => this.setState({ visible: !this.state.visible })
+
   render() {
+    const {visible} = this.state
     return (
       <div className="App">
         <Sidebar.Pushable as={Segment}>
           <Sidebar as={Menu} animation='overlay' width='thin' visible={true} icon='labeled' vertical inverted>
             <Menu.Item name='home'>
-              Account Information
+              <a href={this.toggleVisibility}> <img src={logo}/> </a>
             </Menu.Item>
             <Menu.Item name='gamepad'>
-              Games
+              <a href='#'>Log In</a>
             </Menu.Item>
             <Menu.Item name='camera'>
-              Channels
+              <a href='#'>Create Account</a>
+            </Menu.Item>
+            <Menu.Item name='camera'>
+              <a href='#'>About</a>
             </Menu.Item>
           </Sidebar>
           <Sidebar.Pusher>
