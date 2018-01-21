@@ -20,7 +20,7 @@ class NodeMap extends Component {
             "label": "A node",
             "x": 0,
             "y": 0,
-            "size": 10000
+            "size": 30
           },
           {
             "id": "n1",
@@ -34,7 +34,7 @@ class NodeMap extends Component {
             "label": "And a last one",
             "x": 1,
             "y": 3,
-            "size": 50
+            "size": 10
           }
         ],
         "edges": [
@@ -58,7 +58,12 @@ class NodeMap extends Component {
     };
 
     this.onNodeDialogLoad = this.onNodeDialogLoad.bind(this);
-  
+    this.testIDLog = this.testIDLog.bind(this);
+  };
+
+  testIDLog(ev) {
+    //console.log(ev);
+    console.log(ev.data.node.id);
   };
 
   onNodeDialogLoad() {
@@ -67,9 +72,7 @@ class NodeMap extends Component {
 
   render() {
     return (
-      <Sigma renderer="webgl" style={{maxWidth:"inherit", height:"400px"}} settings={{drawEdges:true}} onOverNode={e => console.log("Mouse over node: " + e.data.node.label)} graph={this.state.testNodeData}>
-        <RelativeSize initialSize={2} />
-      </Sigma>
+      <Sigma onClickNode={this.testIDLog} style={{maxWidth:"-webkit-fill-available", height:"-webkit-fill-available", textAlign: "-webkit-auto"}} settings={{drawEdges:true}} graph={this.state.testNodeData}></Sigma>
     );
   }
 }
