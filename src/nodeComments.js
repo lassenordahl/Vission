@@ -2,9 +2,8 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import ReactDOM from 'react-dom';
-
-import { Button, Header, Image, Modal, Container, Sidebar, Segment, Menu, Icon, Tab, Form, TextArea } from 'semantic-ui-react'
 import VissionApp from './firebase.js';
+import { Button, Header, Input, Image, Modal, Container, Sidebar, Segment, Menu, Icon, Tab, Form, TextArea } from 'semantic-ui-react'
 
 
 class NodeMessages extends Component {
