@@ -4,11 +4,15 @@ import './App.css';
 import ReactDOM from 'react-dom';
 
 import { Button, Header, Image, Modal, Container, Sidebar, Segment, Menu, Icon, Tab, Form, TextArea } from 'semantic-ui-react'
+import VissionApp from './firebase.js';
 
 
 class NodeMessages extends Component {
   constructor(props) {
     super(props);
+
+    // Connect to Firebase
+    this.database = VissionApp.ref().child('node_info');
 
     this.state = {
       messagesDict: this.props.commentInfo,
@@ -25,6 +29,26 @@ class NodeMessages extends Component {
 
   getMessagesList() {
     
+  }
+
+  saveMessage() {
+    //Check that the user entered a message and is signed in.
+    if (this.messageInput.value/*&& this.checkSignedInWithMessage()*/) {
+      //var currentUser = this.auth.currentUser;
+      // Add a new message entry to the Firebase Database.
+      this.database.messages.push({
+        //name: currentUser.displayName,
+        name: "test"
+        text: this.messageInput.value
+        //photoUrl: currentUser.photoURL || '/images/profile_placeholder.png'
+      }).then(function() {
+        // Clear message text field and SEND button state.
+        //FriendlyChat.resetMaterialTextfield(this.messageInput);
+        //this.toggleButton();
+      }.bind(this)).catch(function(error) {
+      console.error('Error writing new message to Firebase Database', error);
+      });
+    }
   }
 
   convertToArray() {
