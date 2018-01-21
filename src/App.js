@@ -195,8 +195,11 @@ class App extends Component {
               <div class='ui input'><input type="text" placeholder="Type here..." /></div>
             </Modal.Content>
             <Modal.Actions>
+              <Button color='red' inverted>
+                <Icon name='trash' /> Cancel
+              </Button>
               <Button color='green' inverted>
-                <Icon name='checkmark' /> Yes
+                <Icon name='checkmark' /> Submit
               </Button>
             </Modal.Actions>
           </Modal>
