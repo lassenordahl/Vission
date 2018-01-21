@@ -5,17 +5,21 @@ import ReactDOM from 'react-dom';
 
 import { Button, Header, Image, Modal, Container, Sidebar, Segment, Menu, Icon } from 'semantic-ui-react'
 
+import VissionApp from './firebase.js';
 
 class NodeDialog extends Component {
   constructor(props) {
     super(props);
 
+
+    // Connect to Firebase
+    this.database = VissionApp.ref().child('node_info');
+
     this.state = {
-      modalOpen: true
+      node_info: {}
     }
 
     console.log(props.closeDialog);
-
 
     this.handleClose = this.handleClose.bind(this);
     this.closeDialog = this.closeDialog.bind(this);

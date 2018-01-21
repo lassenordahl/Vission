@@ -6,21 +6,18 @@ import ReactDOM from 'react-dom';
 import NodeMap from './nodeMap.js'
 import CommentTest from './commentTest.js';
 import NodeDialog from './nodeDialog.js';
-import uuid from "uuid"
-import { Button, Header, Image, Modal, Container, Sidebar, Segment, Menu } from 'semantic-ui-react'
+import uuid from "uuid";
+import { Button, Header, Image, Modal, Container, Sidebar, Segment, Menu } from 'semantic-ui-react';
 
 // Backend imports
-import firebase from 'firebase';
-import {DB_CONFIG} from './Config.js';
-
+import VissionApp from './firebase.js';
 
 class App extends Component {
   constructor(props) {
     super(props);
     
     // Connect to Firebase
-    this.app = firebase.initializeApp(DB_CONFIG);
-    this.database = this.app.database().ref().child('nodes');
+    this.database = VissionApp.ref().child('nodes');
 
     // Default state
     this.state = {
