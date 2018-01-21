@@ -23,7 +23,7 @@ class NodeDialog extends Component {
     this.state = {
       modalOpen: true,
       vissionTitle: "Music",
-      node_info: {},
+      nodeInfo: {},
     };
 
 
@@ -33,9 +33,8 @@ class NodeDialog extends Component {
 
   componentDidMount() {
     this.database.on('value', snapshot => {
-      console.log(snapshot.val()[this.props.uniqueID])
       this.setState({
-        node_info : snapshot.val()[this.props.uniqueID]
+        nodeInfo : snapshot.val()[this.props.uniqueID]
       });
     });
 
