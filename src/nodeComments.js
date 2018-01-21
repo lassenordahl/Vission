@@ -5,6 +5,7 @@ import ReactDOM from 'react-dom';
 
 import { Button, Header, Image, Modal, Container, Sidebar, Segment, Menu, Icon, Tab, Form, TextArea } from 'semantic-ui-react'
 
+import { Col, Row } from 'react-flexbox-grid'
 
 class NodeMessages extends Component {
   constructor(props) {
