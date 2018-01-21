@@ -36,13 +36,8 @@ class App extends Component {
     this.helper = this.helper.bind(this);
     this.toggleSidebarVisibility = this.toggleSidebarVisibility.bind(this);
     this.toggleAboutVisibility = this.toggleAboutVisibility.bind(this);
-    this.submit = this.submit.bind(this);
     this.handleChange = this.handleChange.bind(this);
   };
-
-  submit() {
-    console.log(this.state.login);
-  }
 
   colorLuminance(hex, lum) {
      // validate hex string
@@ -208,8 +203,8 @@ class App extends Component {
               <Button color='red' inverted>
                 <Icon name='trash' /> Cancel
               </Button>
-              <Button color='green' onClick={this.submit} inverted>
-                <Icon name='checkmark' /> Submit
+              <Button color='green' inverted>
+                <Icon name='checkmark'/> Submit
               </Button>
             </Modal.Actions>
           </Modal>
@@ -226,10 +221,10 @@ class App extends Component {
               </div>
             <div style={{ position: 'absolute', zIndex: '99', top: '10px', left: '10px', color: 'white'}}><i className="sidebar icon" onClick={this.toggleSidebarVisibility}></i></div>
           </Sidebar>
-          <div class='ui modal' id='loginModal'></div>
+          <div className='ui modal' id='loginModal'></div>
           <Sidebar.Pusher>
             <Segment basic>
-              <div id="nodeMap"></div>
+              <div login={this.state.login} id="nodeMap"></div>
               <div style={{ position: 'absolute', zIndex: '99', top: '10px', left: '10px', color: 'black'}}><i className="sidebar icon" onClick={this.toggleSidebarVisibility}></i></div>
             </Segment>
           </Sidebar.Pusher>

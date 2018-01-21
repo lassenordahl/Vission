@@ -17,8 +17,12 @@ class NodeMap extends Component {
 
     this.state = {
       nodeData: props.nodes,
-      nodeID: null
+      nodeID: null,
+      login: props.login
     };
+
+    console.log(this.state.login);
+
 
     this.onNodeDialogLoad = this.onNodeDialogLoad.bind(this);
     this.testIDLog = this.testIDLog.bind(this);
