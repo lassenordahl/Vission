@@ -6,6 +6,7 @@ import ReactDOM from 'react-dom';
 import NodeMap from './nodeMap.js'
 import CommentTest from './commentTest.js';
 import NodeDialog from './nodeDialog.js';
+import uuid from "uuid"
 import { Button, Header, Image, Modal, Container, Sidebar, Segment, Menu } from 'semantic-ui-react'
 
 // Backend imports
@@ -31,13 +32,83 @@ class App extends Component {
     this.loadSigmaRender = this.loadSigmaRender.bind(this);
   };
 
+  helper(nodes) {
+
+    /* 
+    INPUT DATA EXAMPLE
+    {
+    "nodes" : {
+      "-K2ib4H77rj0LYewF7dP" : {
+        "title" : "Brockhampton",
+        "popularity" : "7",
+        "parentid" : ""
+      }
+    }
+
+
+    OUTPUT DATA EXAMPLE
+
+    new_nodes = {
+        "nodes": [
+          {
+            "id": "n0",
+            "label": "A node",
+            "x": 0,
+            "y": 0,
+            "size": 10000
+          }
+        ],
+        "edges": [
+          {
+            "id": "e0",
+            "source": "n0",
+            "target": "n1"
+          }
+        ]
+      }
+    */
+
+    var new_nodes = {
+      "nodes" : [],
+      "edges" : []
+    };
+
+    for (var node in nodes) {
+      var new_node = {};
+
+      new_node.id = node;
+      new_node.label = nodes[node].title;
+      new_node.size = nodes[node].popularity;
+      new_node.x = 0;
+      new_node.y = 0;
+
+      new_nodes.nodes.push(new_node);
+    }
+
+    for (var node in nodes) {
+      if (nodes[node].parentid) {
+        for (var other_node in nodes) {
+          if (other_node === nodes[node].parentid) {
+            new_nodes.edges.push(
+              {
+                "id" : uuid.v4(),
+                "source" : node,
+                "target" : other_node
+              })
+          }
+        }
+      }
+    }
+
+    return new_nodes;
+  };
+
   componentDidMount() {
     // Refresh state on value changes
     this.database.on('value', snap => {
       this.setState({
         nodes: snap.val()
       });
-    console.log(this.state.nodes)
     });
   }
 

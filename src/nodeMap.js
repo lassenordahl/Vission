@@ -5,6 +5,7 @@ import { Sigma, RelativeSize } from 'react-sigma';
 import ReactDOM from 'react-dom';
 
 import CommentTest from './commentTest.js';
+import NodeDialog from './nodeDialog.js';
 
 import { Button, Header, Image, Modal, Container } from 'semantic-ui-react'
 
@@ -20,21 +21,21 @@ class NodeMap extends Component {
             "label": "A node",
             "x": 0,
             "y": 0,
-            "size": 30
+            "size": 3
           },
           {
             "id": "n1",
             "label": "Another node",
             "x": 3,
             "y": 1,
-            "size": 10
+            "size": 2
           },
           {
             "id": "n2",
             "label": "And a last one",
             "x": 1,
             "y": 3,
-            "size": 10
+            "size": 1
           }
         ],
         "edges": [
@@ -54,17 +55,29 @@ class NodeMap extends Component {
             "target": "n0"
           }
         ]
-      }
+      },
+      nodeID: null
     };
 
     this.onNodeDialogLoad = this.onNodeDialogLoad.bind(this);
     this.testIDLog = this.testIDLog.bind(this);
+    this.closeNodeDialog = this.closeNodeDialog.bind(this);
   };
 
   testIDLog(ev) {
-    //console.log(ev);
-    console.log(ev.data.node.id);
+    this.setState({
+      nodeID: ev.data.node.id
+    });
+    this.loadNodeDialog();
   };
+
+  loadNodeDialog() {
+    ReactDOM.render(<NodeDialog uniqueID={this.state.nodeID} closeDialog={this.closeNodeDialog}/>, document.getElementById('nodeDialog'));
+  };
+
+  closeNodeDialog() {
+    ReactDOM.unmountComponentAtNode(document.getElementById('nodeDialog'));
+  }
 
   onNodeDialogLoad() {
     console.log('loaded');
@@ -72,8 +85,11 @@ class NodeMap extends Component {
 
   render() {
     return (
-      <Sigma onClickNode={this.testIDLog} style={{maxWidth:"-webkit-fill-available", height:"-webkit-fill-available", textAlign: "-webkit-auto"}} settings={{drawEdges:true}} graph={this.state.testNodeData}></Sigma>
-    );
+      <div>
+        <div id="nodeDialog"></div>
+        <Sigma onClickNode={this.testIDLog} style={{maxWidth:"-webkit-fill-available", height:"-webkit-fill-available", textAlign: "-webkit-auto"}} settings={{drawEdges:true}} graph={this.state.testNodeData}></Sigma>
+      </div>
+      );
   }
 }
 
