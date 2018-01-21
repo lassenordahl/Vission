@@ -153,7 +153,6 @@ class App extends Component {
             </Segment>
           </Sidebar.Pusher>
         </Sidebar.Pushable>
-        
       </div>
     );
   }
