@@ -156,25 +156,25 @@ class App extends Component {
     return (
       <div className="App">
         <Sidebar.Pushable as={Segment}>
-          <Sidebar as={Menu} animation='overlay' width='thin' visible={this.state.sidebarVisible} icon='labeled' vertical inverted>
+          <Sidebar as={Menu} animation='overlay' style={{width: '250px'}} visible={this.state.sidebarVisible} icon='labeled' vertical inverted>
             <Menu.Item name='home'>
-              <a href='#'> <img src={logo}/> </a>
+              <a href='#'><img src={logo}/></a>
             </Menu.Item>
-            <Menu.Item name='gamepad'>
+            <Menu.Item name='logIn'>
               <a href='#'>Log In</a>
             </Menu.Item>
-            <Menu.Item name='camera'>
+            <Menu.Item name='createAccount'>
               <a href='#'>Create Account</a>
             </Menu.Item>
-            <Menu.Item name='camera'>
+            <Menu.Item name='about'>
               <a href='#'>About</a>
             </Menu.Item>
-            <div style={{ position: 'absolute', zIndex: '99', top: '10px', left: '10px', color: 'white'}}><i class="sidebar icon" onClick={this.toggleVisibility}></i></div>
+            <div style={{ position: 'absolute', zIndex: '99', top: '10px', left: '10px', color: 'white'}}><i className="sidebar icon" onClick={this.toggleVisibility}></i></div>
           </Sidebar>
           <Sidebar.Pusher>
             <Segment basic>
               <div id="nodeMap"></div>
-              <div style={{ position: 'absolute', zIndex: '99', top: '10px', left: '10px', color: 'black'}}><i class="sidebar icon" onClick={this.toggleVisibility}></i></div>
+              <div style={{ position: 'absolute', zIndex: '99', top: '10px', left: '10px', color: 'black'}}><i className="sidebar icon" onClick={this.toggleVisibility}></i></div>
             </Segment>
           </Sidebar.Pusher>
         </Sidebar.Pushable>
