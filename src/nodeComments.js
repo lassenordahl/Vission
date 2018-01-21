@@ -6,6 +6,7 @@ import ReactDOM from 'react-dom';
 import { Button, Header, Image, Modal, Container, Sidebar, Segment, Menu, Icon, Tab, Form, TextArea } from 'semantic-ui-react'
 import VissionApp from './firebase.js';
 
+import { Col, Row } from 'react-flexbox-grid'
 
 class NodeMessages extends Component {
   constructor(props) {
@@ -16,11 +17,13 @@ class NodeMessages extends Component {
 
     this.state = {
       messagesDict: this.props.commentInfo,
-      messagesArray: []
+      messagesArray: [],
+      message: ""
     }
 
     this.getMessagesList = this.getMessagesList.bind(this);
     this.convertToArray = this.convertToArray.bind(this);
+    this.submit = this.submit.bind(this);
 
     this.state = {
       messagesArray: this.convertToArray()
@@ -38,7 +41,7 @@ class NodeMessages extends Component {
       // Add a new message entry to the Firebase Database.
       this.database.messages.push({
         //name: currentUser.displayName,
-        name: "test"
+        name: "test",
         text: this.messageInput.value
         //photoUrl: currentUser.photoURL || '/images/profile_placeholder.png'
       }).then(function() {
@@ -49,6 +52,10 @@ class NodeMessages extends Component {
       console.error('Error writing new message to Firebase Database', error);
       });
     }
+  }
+
+  submit() {
+    console.log(this.state.message);
   }
 
   convertToArray() {
@@ -64,6 +71,15 @@ class NodeMessages extends Component {
     }
     return returnArray;
   }
+
+  handleChange(ev) {  
+    console.log(ev);
+    /*
+    this.setState({
+      message: ev.target.value
+    })
+    */
+  };
 
   render() {
 
@@ -91,9 +107,8 @@ class NodeMessages extends Component {
       	{messageList}
         </div>
         <Form>
-          <TextArea placeholder='Join the vission!' />
-          <Button color='purple'>Submit</Button>
-          <Icon name='file image outline' size='big'></Icon>
+          <TextArea value={this.state.message} onChange={this.handleChange} placeholder='Contribute to the Vission' />
+          <Button onClick={this.submit} color='purple'>Submit</Button>
         </Form>
       </div>
     );
