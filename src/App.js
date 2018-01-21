@@ -107,9 +107,9 @@ class App extends Component {
 
       new_node.id = node;
       new_node.label = nodes[node].title;
-      new_node.size = nodes[node].popularity * 3;
-      new_node.x = Math.random() * .1;
-      new_node.y = Math.random() * .1;
+      new_node.size = nodes[node].popularity;
+      new_node.x = Math.random() * .15;
+      new_node.y = Math.random() * .15;
       new_node.color = this.colorLuminance("BF3EFF", Math.random() - 0.5)
 
       new_nodes.nodes.push(new_node);
