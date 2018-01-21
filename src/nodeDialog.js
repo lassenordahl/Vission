@@ -16,26 +16,25 @@ class NodeDialog extends Component {
   constructor(props) {
     super(props);
 
-
     // Connect to Firebase
     this.database = VissionApp.ref().child('node_info');
 
     this.state = {
       modalOpen: true,
       vissionTitle: "Music",
-      node_info: {},
+      nodeInfo: {},
     };
-
 
     this.handleClose = this.handleClose.bind(this);
     this.closeDialog = this.closeDialog.bind(this);
   };
 
   componentDidMount() {
+
     this.database.on('value', snapshot => {
       console.log(snapshot.val()[this.props.uniqueID])
       this.setState({
-        node_info : snapshot.val()[this.props.uniqueID]
+        nodeInfo : snapshot.val()[this.props.uniqueID]
       });
     });
 
@@ -72,7 +71,7 @@ class NodeDialog extends Component {
       <div>
         <Modal open={this.state.modalOpen} onClose={this.handleClose} size='small' closeIcon>
         <Header content={this.state.vissionTitle} />
-        <Tab panes={this.state.panes} />
+        <Tab panes={panes} />
         <Modal.Actions>
           <Button color='green' onClick={this.handleClose} inverted>
             <Icon name='checkmark' /> Got it
