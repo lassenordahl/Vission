@@ -25,13 +25,16 @@ class App extends Component {
     this.state = {
       nodes: {},
       newNodes: {},
-      sidebarVisible: true
+      sidebarVisible: true,
+      aboutVisibile: false
     };
 
     this.onNodeDialogLoad = this.onNodeDialogLoad.bind(this);
     this.loadSigmaRender = this.loadSigmaRender.bind(this);
     this.helper = this.helper.bind(this);
-    this.toggleVisibility = this.toggleVisibility.bind(this);
+    this.toggleSidebarVisibility = this.toggleSidebarVisibility.bind(this);
+    this.toggleAboutVisibility = this.toggleAboutVisibility.bind(this);
+    
   };
 
   colorLuminance(hex, lum) {
@@ -159,7 +162,13 @@ class App extends Component {
     ReactDOM.render(<NodeMap nodes={this.state.newNodes}/>, document.getElementById('nodeMap'));
   };
 
-  toggleVisibility() {
+  toggleAboutVisibility() {
+    this.setState({
+      aboutVisibile : !this.state.aboutVisibile
+    });
+  };
+
+  toggleSidebarVisibility() {
     this.setState({ 
       sidebarVisible: !this.state.sidebarVisible 
     });
@@ -177,14 +186,19 @@ class App extends Component {
               <Login responseHandler={this.handleGoogleInfo}/>
             </Menu.Item>
             <Menu.Item name='about'>
-              <a href='#'>About</a>
+              <a href='#' onClick={this.toggleAboutVisibility}>About</a>
             </Menu.Item>
-            <div style={{ position: 'absolute', zIndex: '99', top: '10px', left: '10px', color: 'white'}}><i className="sidebar icon" onClick={this.toggleVisibility}></i></div>
+            <div className='about'>
+                {this.state.aboutVisibile ? <p style={{textAlign:'left', color:'white', padding:'5px', paddingRight: '5px'}}>
+                  Vission.io is a new type of social network. A network where people connect themselves and create innovative ideas together. The network expands over time as more people join and branch out into their own topics of creativity. Our platform was designed for anyone who has the creative drive in them, artists, musicians, writers, whoever! As long as you can see the Vission, you can build something to change the world.
+                </p> : null }
+              </div>
+            <div style={{ position: 'absolute', zIndex: '99', top: '10px', left: '10px', color: 'white'}}><i className="sidebar icon" onClick={this.toggleSidebarVisibility}></i></div>
           </Sidebar>
           <Sidebar.Pusher>
             <Segment basic>
               <div id="nodeMap"></div>
-              <div style={{ position: 'absolute', zIndex: '99', top: '10px', left: '10px', color: 'black'}}><i className="sidebar icon" onClick={this.toggleVisibility}></i></div>
+              <div style={{ position: 'absolute', zIndex: '99', top: '10px', left: '10px', color: 'black'}}><i className="sidebar icon" onClick={this.toggleSidebarVisibility}></i></div>
             </Segment>
           </Sidebar.Pusher>
         </Sidebar.Pushable>
