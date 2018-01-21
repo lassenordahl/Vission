@@ -20,21 +20,21 @@ class App extends Component {
             "label": "A node",
             "x": 0,
             "y": 0,
-            "size": 3
+            "size": 10000
           },
           {
             "id": "n1",
             "label": "Another node",
             "x": 3,
             "y": 1,
-            "size": 2
+            "size": 10
           },
           {
             "id": "n2",
             "label": "And a last one",
             "x": 1,
             "y": 3,
-            "size": 1
+            "size": 50
           }
         ],
         "edges": [
@@ -58,7 +58,7 @@ class App extends Component {
     };
 
     this.onNodeDialogLoad = this.onNodeDialogLoad.bind(this);
-    this.loadSigmaRender = this.loadSigmaRender.bind(this);
+  
   };
 
   onNodeDialogLoad() {

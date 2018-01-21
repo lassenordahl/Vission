@@ -6,6 +6,7 @@ import ReactDOM from 'react-dom';
 
 import NodeMap from './nodeMap.js'
 import CommentTest from './commentTest.js';
+import NodeDialog from './nodeDialog.js';
 
 import { Button, Header, Image, Modal, Container } from 'semantic-ui-react'
 
@@ -14,7 +15,7 @@ class App extends Component {
     super(props);
     
     this.state = {
-      var: 0
+      var: 20
     };
 
     this.onNodeDialogLoad = this.onNodeDialogLoad.bind(this);
@@ -45,6 +46,7 @@ class App extends Component {
            </Modal.Content>  
         </Modal>
         <Button onClick={this.loadSigmaRender}>Load</Button>
+
 
         <div id="nodemap"></div>
       </div>
