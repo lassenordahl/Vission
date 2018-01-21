@@ -43,19 +43,29 @@ class NodeMessages extends Component {
 
   render() {
 
+    var getInitial = function(name){
+      return name.slice(0,1);
+    }
+
     var messageList = this.state.messagesArray.map(function(value) {
       return (
-        <div key={value.text}>
-          <h3>{value.name}</h3>
-          <p>{value.text}</p>
+        <div>
+          <div className="initialIcon">
+            <p className="initial">{getInitial(value.name).toUpperCase()}</p>
+          </div>
+          <div key={value.text}>
+            <h3 className="commentName">{value.name}</h3>
+            <p className="commentText">{value.text}</p>
+          </div>
         </div>
       );
-     
     });
 
     return (
       <div>
+        <div className="largerMargin">
       	{messageList}
+        </div>
         <Form>
           <TextArea placeholder='Join the vission!' />
           <Button color='purple'>Submit</Button>

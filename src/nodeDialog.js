@@ -72,8 +72,8 @@ class NodeDialog extends Component {
         <Header content={this.state.vissionTitle} />
         <Tab panes={panes} />
         <Modal.Actions>
-          <Button color='green' onClick={this.handleClose} inverted>
-            <Icon name='checkmark' /> Got it
+          <Button color='red' onClick={this.handleClose} inverted>
+            <Icon name='wrench' /> Build
           </Button>
         </Modal.Actions>
       </Modal>
