@@ -18,7 +18,7 @@ class NodeInfo extends Component {
   render() {
     return (
       <div>
-      	<h3>{this.props.nodeInfo.body}</h3>
+      	<p>{this.props.nodeInfo.body}</p>
       </div>
     );
   }
