@@ -3,7 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import ReactDOM from 'react-dom';
 
-import { Button, Header, Image, Modal, Container, Sidebar, Segment, Menu, Icon, Tab } from 'semantic-ui-react'
+import { Button, Header, Image, Modal, Container, Sidebar, Segment, Menu, Icon, Tab, Form, TextArea } from 'semantic-ui-react'
 
 
 class NodeComments extends Component {
@@ -43,6 +43,11 @@ class NodeComments extends Component {
     return (
       <div>
       	{commentList}
+        <Form>
+          <TextArea placeholder='Join the vission!' />
+          <Button color='purple'>Submit</Button>
+          <Icon name='file image outline' size='big'></Icon>
+        </Form>
       </div>
     );
   }

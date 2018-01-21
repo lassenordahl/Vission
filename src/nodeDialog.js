@@ -64,7 +64,7 @@ class NodeDialog extends Component {
   render() {
     return (
       <div>
-        <Modal open={this.state.modalOpen} onClose={this.handleClose} size='small'>
+        <Modal open={this.state.modalOpen} onClose={this.handleClose} size='small' closeIcon>
         <Header content={this.state.vissionTitle} />
         <Tab panes={this.state.panes} />
         <Modal.Actions>
