@@ -10,10 +10,11 @@ import NodeComments from './nodeComments.js';
 
 import VissionApp from './firebase.js';
 
+
 class NodeDialog extends Component {
+
   constructor(props) {
     super(props);
-
 
     // Connect to Firebase
     this.database = VissionApp.ref().child('node_info');
@@ -21,24 +22,22 @@ class NodeDialog extends Component {
     this.state = {
       modalOpen: true,
       vissionTitle: "Music",
-      panes : [
-        { 
-          menuItem: 'Info', render: () => 
-          <Tab.Pane>
-            <NodeInfo uniqueID={this.props.uniqueID}/>
-          </Tab.Pane>
-        },
-        { 
-          menuItem: 'Comments', render: () => 
-          <Tab.Pane> 
-            <NodeComments/>
-          </Tab.Pane>
-        },
-      ]
-    }
+      nodeInfo: {},
+    };
 
     this.handleClose = this.handleClose.bind(this);
     this.closeDialog = this.closeDialog.bind(this);
+  };
+
+  componentDidMount() {
+
+    this.database.on('value', snapshot => {
+      console.log(snapshot.val()[this.props.uniqueID])
+      this.setState({
+        nodeInfo : snapshot.val()[this.props.uniqueID] || {body: "", messages: {}}
+      });
+    });
+
   };
 
   handleClose() {
@@ -53,11 +52,26 @@ class NodeDialog extends Component {
   };
 
   render() {
+    var panes = [
+        { 
+          menuItem: 'Info', render: () => 
+          <Tab.Pane>
+            <NodeInfo nodeInfo={this.state.nodeInfo}/>
+          </Tab.Pane>
+        },
+        { 
+          menuItem: 'Comments', render: () => 
+          <Tab.Pane> 
+            <NodeComments/>
+          </Tab.Pane>
+        },
+      ];
+
     return (
       <div>
         <Modal open={this.state.modalOpen} onClose={this.handleClose} size='small' closeIcon>
         <Header content={this.state.vissionTitle} />
-        <Tab panes={this.state.panes} />
+        <Tab panes={panes} />
         <Modal.Actions>
           <Button color='green' onClick={this.handleClose} inverted>
             <Icon name='checkmark' /> Got it
