@@ -59,7 +59,7 @@ class App extends Component {
         <Sidebar.Pushable as={Segment}>
           <Sidebar as={Menu} animation='overlay' width='thin' visible={true} icon='labeled' vertical inverted>
             <Menu.Item name='home'>
-              Home
+              Account Information
             </Menu.Item>
             <Menu.Item name='gamepad'>
               Games
@@ -79,7 +79,7 @@ class App extends Component {
             </Segment>
           </Sidebar.Pusher>
         </Sidebar.Pushable>
-       
+        
       </div>
     );
   }
