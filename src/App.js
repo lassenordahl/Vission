@@ -132,10 +132,11 @@ class App extends Component {
     const {visible} = this.state
     return (
       <div className="App">
+        <Button onClick={this.state.toggleVisibility}/>
         <Sidebar.Pushable as={Segment}>
           <Sidebar as={Menu} animation='overlay' width='thin' visible={true} icon='labeled' vertical inverted>
             <Menu.Item name='home'>
-              <a href={this.toggleVisibility}> <img src={logo}/> </a>
+              <a href='#'> <img src={logo}/> </a>
             </Menu.Item>
             <Menu.Item name='gamepad'>
               <a href='#'>Log In</a>
