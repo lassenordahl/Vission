@@ -6,7 +6,7 @@ import ReactDOM from 'react-dom';
 import { Button, Header, Image, Modal, Container, Sidebar, Segment, Menu, Icon, Tab } from 'semantic-ui-react';
 
 import NodeInfo from './nodeInfo.js';
-import NodeComments from './nodeComments.js';
+import NodeMessages from './nodeComments.js';
 
 import VissionApp from './firebase.js';
 
@@ -32,7 +32,6 @@ class NodeDialog extends Component {
   componentDidMount() {
 
     this.database.on('value', snapshot => {
-      console.log(snapshot.val()[this.props.uniqueID])
       this.setState({
         nodeInfo : snapshot.val()[this.props.uniqueID] || {body: "", messages: {}}
       });
@@ -62,7 +61,7 @@ class NodeDialog extends Component {
         { 
           menuItem: 'Comments', render: () => 
           <Tab.Pane> 
-            <NodeComments/>
+            <NodeMessages commentInfo={this.state.nodeInfo.messages}/>
           </Tab.Pane>
         },
       ];
