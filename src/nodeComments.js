@@ -9,7 +9,6 @@ import { Button, Header, Input, Image, Modal, Container, Sidebar, Segment, Menu,
 class NodeMessages extends Component {
   constructor(props) {
     super(props);
-
     // Connect to Firebase
     this.database = VissionApp.ref().child('node_info');
 
@@ -33,28 +32,27 @@ class NodeMessages extends Component {
     
   }
 
-  saveMessage() {
-    //Check that the user entered a message and is signed in.
-    if (this.messageInput.value/*&& this.checkSignedInWithMessage()*/) {
+  submit() {
+    console.log(this.state.message);
+    if (this.state.message) {
       //var currentUser = this.auth.currentUser;
       // Add a new message entry to the Firebase Database.
-      this.database.messages.push({
+      console.log("message detected")
+      console.log(this.props.uniqueID)
+      this.database.child(this.props.uniqueID).child('messages').push({
         //name: currentUser.displayName,
         name: "test",
-        text: this.messageInput.value
+        text: this.state.message
         //photoUrl: currentUser.photoURL || '/images/profile_placeholder.png'
       }).then(function() {
         // Clear message text field and SEND button state.
         //FriendlyChat.resetMaterialTextfield(this.messageInput);
         //this.toggleButton();
+        console.log("pushed")
       }.bind(this)).catch(function(error) {
       console.error('Error writing new message to Firebase Database', error);
       });
     }
-  }
-
-  submit() {
-    console.log(this.state.message);
   }
 
   convertToArray() {

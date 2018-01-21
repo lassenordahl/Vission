@@ -61,7 +61,7 @@ class NodeDialog extends Component {
         { 
           menuItem: 'Comments', render: () => 
           <Tab.Pane> 
-            <NodeMessages commentInfo={this.state.nodeInfo.messages}/>
+            <NodeMessages commentInfo={this.state.nodeInfo.messages} uniqueID={this.props.uniqueID}/>
           </Tab.Pane>
         },
       ];
