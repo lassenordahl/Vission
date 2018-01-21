@@ -32,16 +32,6 @@ class NodeDialog extends Component {
   };
 
   componentDidMount() {
-
-    this.database.on('value', snap => {
-      console.log('event listener');
-      ReactDOM.unmountComponentAtNode(document.getElementById('nodeMap'));
-      this.setState({
-        nodes: snap.val()
-      });
-      //this.helper(this.state.nodes);
-    });
-
     this.database.on('value', snapshot => {
       console.log(snapshot.val()[this.props.uniqueID])
       this.setState({
