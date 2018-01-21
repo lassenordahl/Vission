@@ -198,7 +198,7 @@ class App extends Component {
               <a href='#'><img src={logo}/></a>
             </Menu.Item>
             <Menu.Item name='logIn'>
-            <Modal trigger={<Button>Log In</Button>} size='small'>
+            <Modal trigger={<Button inverted>Log In</Button>} size='small'>
             <Header icon='comments' content='Choose a username.' />
             <Modal.Content>
               <p>Choose a username to use when chatting in the Vission.</p>
