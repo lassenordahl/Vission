@@ -5,6 +5,7 @@ import { Sigma, RelativeSize } from 'react-sigma';
 import ReactDOM from 'react-dom';
 import NodeMap from './nodeMap.js'
 import CommentTest from './commentTest.js';
+import NodeDialog from './nodeDialog.js';
 import { Button, Header, Image, Modal, Container } from 'semantic-ui-react'
 
 // Backend imports
@@ -63,8 +64,6 @@ class App extends Component {
            </Modal.Content>  
         </Modal>
         <Button onClick={this.loadSigmaRender}>Load</Button>
-
-        <p></p>
 
         <div id="nodemap"></div>
       </div>
