@@ -32,6 +32,16 @@ class NodeMessages extends Component {
     
   }
 
+  componentDidMount() {
+    this.database.child(this.props.uniqueID).child('messages').on('value', snapshot => {
+      console.log(snapshot.val())
+      this.setState({
+        messagesArray : snapshot.val().convertToArray()
+      });
+    });
+
+  };
+
   submit() {
     console.log(this.state.message);
     if (this.state.message) {
