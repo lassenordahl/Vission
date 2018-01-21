@@ -52,7 +52,6 @@ class NodeMap extends Component {
   render() {
     return (
       <div>
-        <Button onClick={this.testLog}>test</Button>
         <div id="nodeDialog"></div>
         <Sigma onClickNode={this.testIDLog} style={{maxWidth:"-webkit-fill-available", height:"-webkit-fill-available", textAlign: "-webkit-auto"}} settings={{drawEdges:true}} graph={this.state.nodeData}></Sigma>
       </div>

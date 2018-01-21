@@ -81,9 +81,9 @@ class App extends Component {
 
       new_node.id = node;
       new_node.label = nodes[node].title;
-      new_node.size = nodes[node].popularity;
-      new_node.x = 0;
-      new_node.y = 0;
+      new_node.size = nodes[node].popularity * 3;
+      new_node.x = Math.random() * .1;
+      new_node.y = Math.random() * .1;
 
       new_nodes.nodes.push(new_node);
     }
@@ -143,8 +143,7 @@ class App extends Component {
           </Sidebar>
           <Sidebar.Pusher>
             <Segment basic>
-              <Header as='h3'>Application Content</Header>
-                <div id="nodeMap"></div>
+              <div id="nodeMap"></div>
             </Segment>
           </Sidebar.Pusher>
         </Sidebar.Pushable>
