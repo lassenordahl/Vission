@@ -19,7 +19,6 @@ class NodeDialog extends Component {
     this.database = VissionApp.ref().child('node_info');
 
     this.state = {
-<<<<<<< HEAD
       modalOpen: true,
       vissionTitle: "Music",
       panes : [
@@ -38,13 +37,6 @@ class NodeDialog extends Component {
       ]
     }
 
-=======
-      node_info: {}
-    }
-
-    console.log(props.closeDialog);
-
->>>>>>> 492118022e5120ce0a084b716a104267110f1011
     this.handleClose = this.handleClose.bind(this);
     this.closeDialog = this.closeDialog.bind(this);
   };
