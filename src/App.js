@@ -6,10 +6,11 @@ import ReactDOM from 'react-dom';
 import NodeMap from './nodeMap.js'
 import CommentTest from './commentTest.js';
 import NodeDialog from './nodeDialog.js';
+import LoginModal from './loginModal.js';
 import uuid from "uuid";
 import Login from './Login';
 import { GoogleLogin } from 'react-google-login-component';
-import { Button, Header, Image, Modal, Container, Sidebar, Segment, Menu } from 'semantic-ui-react';
+import { Button, Header, Icon, Image, Modal, Container, Sidebar, Segment, Menu } from 'semantic-ui-react';
 
 // Backend imports
 import VissionApp from './firebase.js';
@@ -162,6 +163,10 @@ class App extends Component {
     ReactDOM.render(<NodeMap nodes={this.state.newNodes}/>, document.getElementById('nodeMap'));
   };
 
+  loadLoginModal() {
+    ReactDOM.render(<LoginModal />, document.getElementById('loginModal'));
+  }
+
   toggleAboutVisibility() {
     this.setState({
       aboutVisibile : !this.state.aboutVisibile
@@ -183,7 +188,18 @@ class App extends Component {
               <a href='#'><img src={logo}/></a>
             </Menu.Item>
             <Menu.Item name='logIn'>
-              <Login responseHandler={this.handleGoogleInfo}/>
+            <Modal trigger={<Button>Log In</Button>} basic size='small'>
+            <Header icon='comments' content='Choose a username.' />
+            <Modal.Content>
+              <p>Choose a username to use when chatting in the Vission.</p>
+              <div class='ui input'><input type="text" placeholder="Type here..." /></div>
+            </Modal.Content>
+            <Modal.Actions>
+              <Button color='green' inverted>
+                <Icon name='checkmark' /> Yes
+              </Button>
+            </Modal.Actions>
+          </Modal>
             </Menu.Item>
             <Menu.Item name='about'>
               <a href='#' onClick={this.toggleAboutVisibility}>About</a>
@@ -197,6 +213,7 @@ class App extends Component {
               </div>
             <div style={{ position: 'absolute', zIndex: '99', top: '10px', left: '10px', color: 'white'}}><i className="sidebar icon" onClick={this.toggleSidebarVisibility}></i></div>
           </Sidebar>
+          <div id='loginModal'></div>
           <Sidebar.Pusher>
             <Segment basic>
               <div id="nodeMap"></div>
