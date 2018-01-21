@@ -27,7 +27,8 @@ class App extends Component {
       nodes: {},
       newNodes: {},
       sidebarVisible: true,
-      aboutVisibile: false
+      aboutVisibile: false,
+      login: ""
     };
 
     this.onNodeDialogLoad = this.onNodeDialogLoad.bind(this);
@@ -35,8 +36,13 @@ class App extends Component {
     this.helper = this.helper.bind(this);
     this.toggleSidebarVisibility = this.toggleSidebarVisibility.bind(this);
     this.toggleAboutVisibility = this.toggleAboutVisibility.bind(this);
-    
+    this.submit = this.submit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   };
+
+  submit() {
+    console.log(this.state.login);
+  }
 
   colorLuminance(hex, lum) {
      // validate hex string
@@ -57,8 +63,12 @@ class App extends Component {
      return rgb;
    }
 
-  
-  
+  handleChange(ev) { 
+    console.log(ev.target.value);
+    this.setState({
+      login: ev.target.value
+    });
+  };
 
   helper(nodes) {
 
@@ -192,13 +202,13 @@ class App extends Component {
             <Header icon='comments' content='Choose a username.' />
             <Modal.Content>
               <p>Choose a username to use when chatting in the Vission.</p>
-              <div class='ui input'><input type="text" placeholder="Type here..." /></div>
+              <div class='ui input'><input type="text" value={this.state.login} onChange={this.handleChange} placeholder="Login" /></div>
             </Modal.Content>
             <Modal.Actions>
               <Button color='red' inverted>
                 <Icon name='trash' /> Cancel
               </Button>
-              <Button color='green' inverted>
+              <Button color='green' onClick={this.submit} inverted>
                 <Icon name='checkmark' /> Submit
               </Button>
             </Modal.Actions>
