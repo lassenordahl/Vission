@@ -32,6 +32,25 @@ class App extends Component {
     this.toggleVisibility = this.toggleVisibility.bind(this);
   };
 
+  colorLuminance(hex, lum) {
+     // validate hex string
+     hex = String(hex).replace(/[^0-9a-f]/gi, '');
+     if (hex.length < 6) {
+       hex = hex[0]+hex[0]+hex[1]+hex[1]+hex[2]+hex[2];
+     }
+     lum = lum || 0;
+ 
+     // convert to decimal and change luminosity
+     var rgb = "#", c, i;
+     for (i = 0; i < 3; i++) {
+       c = parseInt(hex.substr(i*2,2), 16);
+       c = Math.round(Math.min(Math.max(0, c + (c * lum)), 255)).toString(16);
+       rgb += ("00"+c).substr(c.length);
+     }
+
+     return rgb;
+   }
+
   helper(nodes) {
 
     /* 
@@ -84,6 +103,7 @@ class App extends Component {
       new_node.size = nodes[node].popularity * 3;
       new_node.x = Math.random() * .1;
       new_node.y = Math.random() * .1;
+      new_node.color = this.colorLuminance("BF3EFF", Math.random() - 0.5)
 
       new_nodes.nodes.push(new_node);
     }
