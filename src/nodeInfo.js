@@ -10,23 +10,9 @@ class NodeInfo extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-    	testComments: [
-    		{
-    			text: "test1",
-    			name: "name1"
-    		},
-    		{
-    			text: "test2",
-    			name: "name2"
-    		},
-    		{
-    			text: "test3",
-    			name: "name3"
-    		}
-    	]
-    }
-    console.log(this.state.testComments);
+    console.log(props);
+
+    this.state = {};
   };
 
   render() {
