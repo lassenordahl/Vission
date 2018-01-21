@@ -19,6 +19,7 @@ class NodeMessages extends Component {
     this.getMessagesList = this.getMessagesList.bind(this);
     this.convertToArray = this.convertToArray.bind(this);
     this.submit = this.submit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
 
     this.state = {
       messagesArray: this.convertToArray()
@@ -47,10 +48,9 @@ class NodeMessages extends Component {
     return returnArray;
   }
 
-  handleChange(ev) {  
-    console.log(ev);
+  handleChange(evt) {  
     this.setState({
-      message: ev.target.value
+      message: evt.target.value
     });
   };
 
@@ -82,7 +82,7 @@ class NodeMessages extends Component {
       	{messageList}
         </div>
         <Form>
-          <Input fluid value={this.state.message} onChange={this.handleChange} placeholder='Join the Vission' />
+          <Input fluid type="text" value={this.state.message} onChange={this.handleChange} placeholder='Join the Vission' />
           <Button onClick={this.submit} color='purple'>Submit</Button>
         </Form>
       </div>
