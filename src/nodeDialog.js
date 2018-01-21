@@ -10,13 +10,15 @@ import NodeComments from './nodeComments.js';
 
 import VissionApp from './firebase.js';
 
+
 class NodeDialog extends Component {
+
   constructor(props) {
     super(props);
 
 
     // Connect to Firebase
-    this.database = VissionApp.ref().child('node_info');
+    var ref = VissionApp.ref().child('node_info');
 
     this.state = {
       modalOpen: true,
@@ -25,7 +27,7 @@ class NodeDialog extends Component {
         { 
           menuItem: 'Info', render: () => 
           <Tab.Pane>
-            <NodeInfo uniqueID={this.props.uniqueID}/>
+            <NodeInfo nodeInfo={this.state.nodeInfo}/>
           </Tab.Pane>
         },
         { 
@@ -36,6 +38,13 @@ class NodeDialog extends Component {
         },
       ]
     }
+
+    ref.on("value", function(snapshot) {
+      this.setState({node_info : snapshot.val()[props.uniqueID] || {body:"", messages: {}}})
+    }, function (errorObject) {
+      console.log("The read failed: " + errorObject.code);
+    });
+
 
     this.handleClose = this.handleClose.bind(this);
     this.closeDialog = this.closeDialog.bind(this);

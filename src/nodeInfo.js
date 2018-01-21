@@ -32,7 +32,7 @@ class NodeInfo extends Component {
   render() {
     return (
       <div>
-      	<h3>Unique ID: {this.props.uniqueID}</h3>
+      	<h3>{this.props.nodeInfo.body}</h3>
       </div>
     );
   }
