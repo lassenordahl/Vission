@@ -109,6 +109,7 @@ class App extends Component {
       this.setState({
         nodes: snap.val()
       });
+      console.log(this.helper(this.state.nodes));
     });
   }
 
