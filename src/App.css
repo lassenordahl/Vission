@@ -26,3 +26,30 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+.largerMargin {
+  margin: 25px;
+}
+
+.initialIcon {
+  background-color: #a333c8;
+  color: white;
+  border-radius: 22px;
+  width: 44px;
+  height: 44px;
+  text-align: center;
+}
+
+.initial {
+  font-size: 25px;
+  margin: auto;
+}
+
+.commentText {
+  margin-top: 0px;
+  margin-bottom: 20px !important;
+}
+
+.commentName {
+  margin-bottom: 2px;
+}
