@@ -131,6 +131,8 @@ class App extends Component {
   componentDidMount() {
     // Refresh state on value changes
     this.database.on('value', snap => {
+      console.log('event listener');
+      ReactDOM.unmountComponentAtNode(document.getElementById('nodeMap'));
       this.setState({
         nodes: snap.val()
       });
