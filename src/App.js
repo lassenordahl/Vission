@@ -7,6 +7,8 @@ import NodeMap from './nodeMap.js'
 import CommentTest from './commentTest.js';
 import NodeDialog from './nodeDialog.js';
 import uuid from "uuid";
+import Login from './Login';
+import { GoogleLogin } from 'react-google-login-component';
 import { Button, Header, Image, Modal, Container, Sidebar, Segment, Menu } from 'semantic-ui-react';
 
 // Backend imports
@@ -51,6 +53,9 @@ class App extends Component {
      return rgb;
    }
 
+  
+  
+
   helper(nodes) {
 
     /* 
@@ -93,6 +98,8 @@ class App extends Component {
       "nodes" : [],
       "edges" : []
     };
+
+  
     
 
     for (var node in nodes) {
@@ -163,7 +170,7 @@ class App extends Component {
               <a href='#'><img src={logo}/></a>
             </Menu.Item>
             <Menu.Item name='logIn'>
-              <a href='#'>Log In</a>
+              <Login/>
             </Menu.Item>
             <Menu.Item name='createAccount'>
               <a href='#'>Create Account</a>
