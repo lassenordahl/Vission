@@ -58,7 +58,12 @@ class NodeMap extends Component {
     };
 
     this.onNodeDialogLoad = this.onNodeDialogLoad.bind(this);
-  
+    this.testIDLog = this.testIDLog.bind(this);
+  };
+
+  testIDLog(ev) {
+    //console.log(ev);
+    console.log(ev.data.node.id);
   };
 
   onNodeDialogLoad() {
@@ -67,7 +72,7 @@ class NodeMap extends Component {
 
   render() {
     return (
-      <Sigma style={{maxWidth:"-webkit-fill-available", height:"-webkit-fill-available", textAlign: "-webkit-auto"}} settings={{drawEdges:true}} graph={this.state.testNodeData}></Sigma>
+      <Sigma onClickNode={this.testIDLog} style={{maxWidth:"-webkit-fill-available", height:"-webkit-fill-available", textAlign: "-webkit-auto"}} settings={{drawEdges:true}} graph={this.state.testNodeData}></Sigma>
     );
   }
 }
