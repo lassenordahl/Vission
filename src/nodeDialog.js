@@ -8,12 +8,18 @@ import { Button, Header, Image, Modal, Container, Sidebar, Segment, Menu, Icon, 
 import NodeInfo from './nodeInfo.js';
 import NodeComments from './nodeComments.js';
 
+import VissionApp from './firebase.js';
 
 class NodeDialog extends Component {
   constructor(props) {
     super(props);
 
+
+    // Connect to Firebase
+    this.database = VissionApp.ref().child('node_info');
+
     this.state = {
+<<<<<<< HEAD
       modalOpen: true,
       vissionTitle: "Music",
       panes : [
@@ -32,6 +38,13 @@ class NodeDialog extends Component {
       ]
     }
 
+=======
+      node_info: {}
+    }
+
+    console.log(props.closeDialog);
+
+>>>>>>> 492118022e5120ce0a084b716a104267110f1011
     this.handleClose = this.handleClose.bind(this);
     this.closeDialog = this.closeDialog.bind(this);
   };

@@ -6,21 +6,18 @@ import ReactDOM from 'react-dom';
 import NodeMap from './nodeMap.js'
 import CommentTest from './commentTest.js';
 import NodeDialog from './nodeDialog.js';
-import uuid from "uuid"
-import { Button, Header, Image, Modal, Container, Sidebar, Segment, Menu } from 'semantic-ui-react'
+import uuid from "uuid";
+import { Button, Header, Image, Modal, Container, Sidebar, Segment, Menu } from 'semantic-ui-react';
 
 // Backend imports
-import firebase from 'firebase';
-import {DB_CONFIG} from './Config.js';
-
+import VissionApp from './firebase.js';
 
 class App extends Component {
   constructor(props) {
     super(props);
     
     // Connect to Firebase
-    this.app = firebase.initializeApp(DB_CONFIG);
-    this.database = this.app.database().ref().child('nodes');
+    this.database = VissionApp.ref().child('nodes');
 
     // Default state
     this.state = {
@@ -77,6 +74,7 @@ class App extends Component {
       "nodes" : [],
       "edges" : []
     };
+    
 
     for (var node in nodes) {
       var new_node = {};
@@ -129,7 +127,6 @@ class App extends Component {
   };
 
   toggleVisibility() {
-    console.log('toggle');
     this.setState({ 
       sidebarVisible: !this.state.sidebarVisible 
     });
@@ -138,7 +135,6 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Button onClick={this.toggleVisibility}/>
         <Sidebar.Pushable as={Segment}>
           <Sidebar as={Menu} animation='overlay' width='thin' visible={this.state.sidebarVisible} icon='labeled' vertical inverted>
             <Menu.Item name='home'>
@@ -153,10 +149,12 @@ class App extends Component {
             <Menu.Item name='camera'>
               <a href='#'>About</a>
             </Menu.Item>
+            <div style={{ position: 'absolute', zIndex: '99', top: '10px', left: '10px', color: 'white'}}><i class="sidebar icon" onClick={this.toggleVisibility}></i></div>
           </Sidebar>
           <Sidebar.Pusher>
             <Segment basic>
               <div id="nodeMap"></div>
+              <div style={{ position: 'absolute', zIndex: '99', top: '10px', left: '10px', color: 'black'}}><i class="sidebar icon" onClick={this.toggleVisibility}></i></div>
             </Segment>
           </Sidebar.Pusher>
         </Sidebar.Pushable>
