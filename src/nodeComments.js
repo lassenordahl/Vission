@@ -13,19 +13,16 @@ class NodeMessages extends Component {
     this.database = VissionApp.ref().child('node_info');
 
     this.state = {
-      messagesDict: this.props.commentInfo,
+      messagesDict: {},
       messagesArray: [],
       message: ""
     }
+
 
     this.getMessagesList = this.getMessagesList.bind(this);
     this.convertToArray = this.convertToArray.bind(this);
     this.submit = this.submit.bind(this);
     this.handleChange = this.handleChange.bind(this);
-
-    this.state = {
-      messagesArray: this.convertToArray()
-    }
   };
 
   getMessagesList() {
@@ -35,11 +32,11 @@ class NodeMessages extends Component {
   componentDidMount() {
     this.database.child(this.props.uniqueID).child('messages').on('value', snapshot => {
       console.log(snapshot.val())
+
       this.setState({
-        messagesArray : snapshot.val().convertToArray()
+        messagesArray: this.convertToArray(snapshot.val())
       });
     });
-
   };
 
   submit() {
@@ -59,20 +56,23 @@ class NodeMessages extends Component {
         //FriendlyChat.resetMaterialTextfield(this.messageInput);
         //this.toggleButton();
         console.log("pushed")
+        this.setState({
+          message: ""
+        });
       }.bind(this)).catch(function(error) {
-      console.error('Error writing new message to Firebase Database', error);
+        console.error('Error writing new message to Firebase Database', error);
       });
     }
   }
 
-  convertToArray() {
+  convertToArray(messagesDict) {
     var returnArray = [];
 
-    for (var message in this.props.commentInfo) {
+    for (var message in messagesDict) {
       var temp = {};
 
-      temp.name = this.props.commentInfo[message].name;
-      temp.text = this.props.commentInfo[message].text;
+      temp.name = messagesDict[message].name;
+      temp.text = messagesDict[message].text;
 
       returnArray.push(temp);
     }
