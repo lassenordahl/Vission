@@ -188,7 +188,7 @@ class App extends Component {
               <a href='#'><img src={logo}/></a>
             </Menu.Item>
             <Menu.Item name='logIn'>
-            <Modal trigger={<Button>Log In</Button>} basic size='small'>
+            <Modal trigger={<Button>Log In</Button>} size='small'>
             <Header icon='comments' content='Choose a username.' />
             <Modal.Content>
               <p>Choose a username to use when chatting in the Vission.</p>
@@ -213,7 +213,7 @@ class App extends Component {
               </div>
             <div style={{ position: 'absolute', zIndex: '99', top: '10px', left: '10px', color: 'white'}}><i className="sidebar icon" onClick={this.toggleSidebarVisibility}></i></div>
           </Sidebar>
-          <div id='loginModal'></div>
+          <div class='ui modal' id='loginModal'></div>
           <Sidebar.Pusher>
             <Segment basic>
               <div id="nodeMap"></div>
