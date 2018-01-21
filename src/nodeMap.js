@@ -20,7 +20,7 @@ class NodeMap extends Component {
             "label": "A node",
             "x": 0,
             "y": 0,
-            "size": 10000
+            "size": 10
           },
           {
             "id": "n1",
@@ -34,7 +34,7 @@ class NodeMap extends Component {
             "label": "And a last one",
             "x": 1,
             "y": 3,
-            "size": 50
+            "size": 10
           }
         ],
         "edges": [
