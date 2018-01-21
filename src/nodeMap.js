@@ -27,8 +27,10 @@ class NodeMap extends Component {
   };
 
   testIDLog(ev) {
+    console.log(ev.data.node);
     this.setState({
-      nodeID: ev.data.node.id
+      nodeID: ev.data.node.id,
+      title: ev.data.node.label
     });
     this.loadNodeDialog();
   };
@@ -38,7 +40,7 @@ class NodeMap extends Component {
   };
 
   loadNodeDialog() {
-    ReactDOM.render(<NodeDialog uniqueID={this.state.nodeID} closeDialog={this.closeNodeDialog}/>, document.getElementById('nodeDialog'));
+    ReactDOM.render(<NodeDialog label={this.state.title} uniqueID={this.state.nodeID} closeDialog={this.closeNodeDialog}/>, document.getElementById('nodeDialog'));
   };
 
   closeNodeDialog() {
