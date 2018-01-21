@@ -31,6 +31,10 @@
   margin: 25px;
 }
 
+.marginAbout {
+  margin: 20px;
+}
+
 .initialIcon {
   background-color: #a333c8;
   color: white;
@@ -41,7 +45,7 @@
 }
 
 .initial {
-  font-size: 25px;
+  font-size: 18px;
   margin: auto;
 }
 
@@ -52,4 +56,12 @@
 
 .commentName {
   margin-bottom: 2px;
+}
+
+.rowTest {
+  flex-direction: row;
+}
+
+.space {
+  height: 9px;
 }

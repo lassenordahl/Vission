@@ -189,9 +189,11 @@ class App extends Component {
               <a href='#' onClick={this.toggleAboutVisibility}>About</a>
             </Menu.Item>
             <div className='about'>
-                {this.state.aboutVisibile ? <p style={{textAlign:'left', color:'white', padding:'5px', paddingRight: '5px'}}>
+              <Container className='marginAbout'>
+                {this.state.aboutVisibile ? <p className='marginAbout' style={{textAlign:'left', color:'white', padding:'5px', paddingRight: '5px'}}>
                   Vission.io is a new type of social network. A network where people connect themselves and create innovative ideas together. The network expands over time as more people join and branch out into their own topics of creativity. Our platform was designed for anyone who has the creative drive in them, artists, musicians, writers, whoever! As long as you can see the Vission, you can build something to change the world.
                 </p> : null }
+              </Container>
               </div>
             <div style={{ position: 'absolute', zIndex: '99', top: '10px', left: '10px', color: 'white'}}><i className="sidebar icon" onClick={this.toggleSidebarVisibility}></i></div>
           </Sidebar>
