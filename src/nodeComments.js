@@ -12,11 +12,13 @@ class NodeMessages extends Component {
 
     this.state = {
       messagesDict: this.props.commentInfo,
-      messagesArray: []
+      messagesArray: [],
+      message: ""
     }
 
     this.getMessagesList = this.getMessagesList.bind(this);
     this.convertToArray = this.convertToArray.bind(this);
+    this.submit = this.submit.bind(this);
 
     this.state = {
       messagesArray: this.convertToArray()
@@ -25,6 +27,10 @@ class NodeMessages extends Component {
 
   getMessagesList() {
     
+  }
+
+  submit() {
+    console.log(this.state.message);
   }
 
   convertToArray() {
@@ -40,6 +46,15 @@ class NodeMessages extends Component {
     }
     return returnArray;
   }
+
+  handleChange(ev) {  
+    console.log(ev);
+    /*
+    this.setState({
+      message: ev.target.value
+    })
+    */
+  };
 
   render() {
 
@@ -67,9 +82,8 @@ class NodeMessages extends Component {
       	{messageList}
         </div>
         <Form>
-          <TextArea placeholder='Join the vission!' />
-          <Button color='purple'>Submit</Button>
-          <Icon name='file image outline' size='big'></Icon>
+          <TextArea value={this.state.message} onChange={this.handleChange} placeholder='Contribute to the Vission' />
+          <Button onClick={this.submit} color='purple'>Submit</Button>
         </Form>
       </div>
     );
