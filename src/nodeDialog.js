@@ -3,7 +3,10 @@ import logo from './logo.svg';
 import './App.css';
 import ReactDOM from 'react-dom';
 
-import { Button, Header, Image, Modal, Container, Sidebar, Segment, Menu, Icon } from 'semantic-ui-react'
+import { Button, Header, Image, Modal, Container, Sidebar, Segment, Menu, Icon, Tab } from 'semantic-ui-react';
+
+import NodeInfo from './nodeInfo.js';
+import NodeComments from './nodeComments.js';
 
 
 class NodeDialog extends Component {
@@ -11,11 +14,23 @@ class NodeDialog extends Component {
     super(props);
 
     this.state = {
-      modalOpen: true
+      modalOpen: true,
+      vissionTitle: "Music",
+      panes : [
+        { 
+          menuItem: 'Info', render: () => 
+          <Tab.Pane>
+            <NodeInfo uniqueID={this.props.uniqueID}/>
+          </Tab.Pane>
+        },
+        { 
+          menuItem: 'Comments', render: () => 
+          <Tab.Pane> 
+            <NodeComments/>
+          </Tab.Pane>
+        },
+      ]
     }
-
-    console.log(props.closeDialog);
-
 
     this.handleClose = this.handleClose.bind(this);
     this.closeDialog = this.closeDialog.bind(this);
@@ -36,10 +51,8 @@ class NodeDialog extends Component {
     return (
       <div>
         <Modal open={this.state.modalOpen} onClose={this.handleClose} size='small'>
-        <Header icon='browser' content='Cookies policy' />
-        <Modal.Content>
-          <h3>Unique ID: {this.props.uniqueID}</h3>
-        </Modal.Content>
+        <Header content={this.state.vissionTitle} />
+        <Tab panes={this.state.panes} />
         <Modal.Actions>
           <Button color='green' onClick={this.handleClose} inverted>
             <Icon name='checkmark' /> Got it
