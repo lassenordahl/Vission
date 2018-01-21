@@ -34,7 +34,7 @@ class NodeDialog extends Component {
     this.database.on('value', snapshot => {
       console.log(snapshot.val()[this.props.uniqueID])
       this.setState({
-        nodeInfo : snapshot.val()[this.props.uniqueID]
+        nodeInfo : snapshot.val()[this.props.uniqueID] || {body: "", messages: {}}
       });
     });
 
