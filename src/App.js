@@ -147,6 +147,10 @@ class App extends Component {
     });
   }
 
+  handleGoogleInfo() {
+    console.log(this.responseHandler);
+  }
+
   onNodeDialogLoad() {
     console.log('loaded');
   };
@@ -170,10 +174,7 @@ class App extends Component {
               <a href='#'><img src={logo}/></a>
             </Menu.Item>
             <Menu.Item name='logIn'>
-              <Login/>
-            </Menu.Item>
-            <Menu.Item name='createAccount'>
-              <a href='#'>Create Account</a>
+              <Login responseHandler={this.handleGoogleInfo}/>
             </Menu.Item>
             <Menu.Item name='about'>
               <a href='#'>About</a>

@@ -10,16 +10,17 @@ class Login extends React.Component{
   responseGoogle (googleUser) {
     var id_token = googleUser.getAuthResponse().id_token;
     console.log({accessToken: id_token});
-    //anything else you want to do(save to localStorage)...
-  }
+    console.log('DAMN BOI HE THICC');
+    console.log(googleUser);
+    }
  
   render () {
     return (
       <div>
-        <GoogleLogin socialId="396611738669-ce4nt5d8kgvop5ui68iee7v2mn5gd7su.apps.googleusercontent.com"
+        <GoogleLogin socialId="396611738669-gopcniqlfh179th8ftim2haab1v9lk6p.apps.googleusercontent.com"
                      className="google-login"
                      scope="profile"
-                     fetchBasicProfile={false}
+                     fetchBasicProfile={true}
                      responseHandler={this.responseGoogle}
                      buttonText="Login"/>
       </div>
