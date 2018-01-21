@@ -115,23 +115,25 @@ class NodeMessages extends Component {
 
     return (
       <div>
-        <div className="largerMargin">
-      	{messageList}
-        </div>
-        <div className="largerMargin">
-          <Form>
-            <Grid>
-              <Grid.Row>
-                <Grid.Column width={13}>
-                  <Input fluid type="text" value={this.state.message} onChange={this.handleChange} placeholder='Join the Vission' />
-                </Grid.Column>
-                <Grid.Column width={3}>
-                  <Button onClick={this.submit} color='purple'>Submit</Button>
-                </Grid.Column>
-              </Grid.Row>
-            </Grid>
-          </Form>
-        </div>
+        <Modal.Description>
+          <div className="largerMargin">
+        	{messageList}
+          </div>
+          <div className="largerMargin">
+            <Form>
+              <Grid>
+                <Grid.Row>
+                  <Grid.Column width={13}>
+                    <Input fluid type="text" value={this.state.message} onChange={this.handleChange} placeholder='Join the Vission' />
+                  </Grid.Column>
+                  <Grid.Column width={3}>
+                    <Button onClick={this.submit} color='purple'>Submit</Button>
+                  </Grid.Column>
+                </Grid.Row>
+              </Grid>
+            </Form>
+          </div>
+        </Modal.Description>
       </div>
     );
   }

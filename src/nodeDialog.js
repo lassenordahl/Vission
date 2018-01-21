@@ -69,8 +69,11 @@ class NodeDialog extends Component {
     return (
       <div>
         <Modal open={this.state.modalOpen} onClose={this.handleClose} size='small' closeIcon>
-        <Header content={this.state.vissionTitle} />
-        <Tab panes={panes} />
+        <Modal.Header content={this.state.vissionTitle} />
+        <Modal.Content scrolling>
+          <Tab panes={panes} />
+        </Modal.Content>
+       
         <Modal.Actions>
           <Button color='red' onClick={this.handleClose} inverted>
             <Icon name='wrench' /> Build
