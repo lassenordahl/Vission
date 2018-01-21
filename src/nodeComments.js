@@ -3,7 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import ReactDOM from 'react-dom';
 import VissionApp from './firebase.js';
-import { Button, Header, Input, Image, Modal, Container, Sidebar, Segment, Menu, Icon, Tab, Form, TextArea } from 'semantic-ui-react'
+import { Button, Header, Input, Image, Modal, Container, Sidebar, Segment, Menu, Icon, Tab, Form, TextArea, Grid } from 'semantic-ui-react'
 
 
 class NodeMessages extends Component {
@@ -85,17 +85,23 @@ class NodeMessages extends Component {
 
     var messageList = this.state.messagesArray.map(function(value) {
       return (
-        <div>
-          <div className="column">
-          <div className="initialIcon">
-            <p className="initial">{getInitial(value.name).toUpperCase()}</p>
-          </div>
-          <div key={value.text}>
-            <h3 className="commentName">{value.name}</h3>
-            <p className="commentText">{value.text}</p>
-          </div>
-          </div>
-        </div>
+
+        <Grid>
+          <Grid.Row>
+            <Grid.Column width={2}>
+              <div className="initialIcon">
+                <div className="space"></div>
+                <p className="initial">{getInitial(value.name).toUpperCase()}</p>
+              </div>
+            </Grid.Column>
+            <Grid.Column width={14}>
+              <div key={value.text}>
+                <h3 className="commentName">{value.name}</h3>
+                <p className="commentText">{value.text}</p>
+              </div>
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
       );
     });
 
@@ -104,10 +110,20 @@ class NodeMessages extends Component {
         <div className="largerMargin">
       	{messageList}
         </div>
-        <Form>
-          <Input fluid type="text" value={this.state.message} onChange={this.handleChange} placeholder='Join the Vission' />
-          <Button onClick={this.submit} color='purple'>Submit</Button>
-        </Form>
+        <div className="largerMargin">
+          <Form>
+            <Grid>
+              <Grid.Row>
+                <Grid.Column width={13}>
+                  <Input fluid type="text" value={this.state.message} onChange={this.handleChange} placeholder='Join the Vission' />
+                </Grid.Column>
+                <Grid.Column width={3}>
+                  <Button onClick={this.submit} color='purple'>Submit</Button>
+                </Grid.Column>
+              </Grid.Row>
+            </Grid>
+          </Form>
+        </div>
       </div>
     );
   }
