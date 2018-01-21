@@ -18,36 +18,37 @@ class NodeDialog extends Component {
 
 
     // Connect to Firebase
-    var ref = VissionApp.ref().child('node_info');
+    this.database = VissionApp.ref().child('node_info');
 
     this.state = {
       modalOpen: true,
       vissionTitle: "Music",
-      panes : [
-        { 
-          menuItem: 'Info', render: () => 
-          <Tab.Pane>
-            <NodeInfo nodeInfo={this.state.nodeInfo}/>
-          </Tab.Pane>
-        },
-        { 
-          menuItem: 'Comments', render: () => 
-          <Tab.Pane> 
-            <NodeComments/>
-          </Tab.Pane>
-        },
-      ]
-    }
-
-    ref.on("value", function(snapshot) {
-      this.setState({node_info : snapshot.val()[props.uniqueID] || {body:"", messages: {}}})
-    }, function (errorObject) {
-      console.log("The read failed: " + errorObject.code);
-    });
+      node_info: {},
+    };
 
 
     this.handleClose = this.handleClose.bind(this);
     this.closeDialog = this.closeDialog.bind(this);
+  };
+
+  componentDidMount() {
+
+    this.database.on('value', snap => {
+      console.log('event listener');
+      ReactDOM.unmountComponentAtNode(document.getElementById('nodeMap'));
+      this.setState({
+        nodes: snap.val()
+      });
+      //this.helper(this.state.nodes);
+    });
+
+    this.database.on('value', snapshot => {
+      console.log(snapshot.val()[this.props.uniqueID])
+      this.setState({
+        node_info : snapshot.val()[this.props.uniqueID]
+      });
+    });
+
   };
 
   handleClose() {
@@ -62,6 +63,21 @@ class NodeDialog extends Component {
   };
 
   render() {
+    var panes = [
+        { 
+          menuItem: 'Info', render: () => 
+          <Tab.Pane>
+            <NodeInfo nodeInfo={this.state.nodeInfo}/>
+          </Tab.Pane>
+        },
+        { 
+          menuItem: 'Comments', render: () => 
+          <Tab.Pane> 
+            <NodeComments/>
+          </Tab.Pane>
+        },
+      ];
+
     return (
       <div>
         <Modal open={this.state.modalOpen} onClose={this.handleClose} size='small' closeIcon>
