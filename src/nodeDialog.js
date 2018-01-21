@@ -21,7 +21,7 @@ class NodeDialog extends Component {
 
     this.state = {
       modalOpen: true,
-      vissionTitle: "Music",
+      vissionTitle: props.label,
       nodeInfo: {},
     };
 
