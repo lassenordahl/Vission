@@ -33,7 +33,7 @@ class NodeDialog extends Component {
 
     this.database.on('value', snapshot => {
       this.setState({
-        nodeInfo : snapshot.val()[this.props.uniqueID]
+        nodeInfo : snapshot.val()[this.props.uniqueID] || {body: "", messages: {}}
       });
     });
 
