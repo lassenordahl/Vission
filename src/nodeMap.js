@@ -8,7 +8,7 @@ import CommentTest from './commentTest.js';
 
 import { Button, Header, Image, Modal, Container } from 'semantic-ui-react'
 
-class App extends Component {
+class NodeMap extends Component {
   constructor(props) {
     super(props);
     
@@ -74,4 +74,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default NodeMap;

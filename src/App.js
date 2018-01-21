@@ -3,23 +3,41 @@ import logo from './logo.svg';
 import './App.css';
 import { Sigma, RelativeSize } from 'react-sigma';
 import ReactDOM from 'react-dom';
-
 import NodeMap from './nodeMap.js'
 import CommentTest from './commentTest.js';
-
 import { Button, Header, Image, Modal, Container } from 'semantic-ui-react'
+
+// Backend imports
+import firebase from 'firebase';
+import {DB_CONFIG} from './Config.js';
+
 
 class App extends Component {
   constructor(props) {
     super(props);
     
+    // Connect to Firebase
+    this.app = firebase.initializeApp(DB_CONFIG);
+    this.database = this.app.database().ref().child('nodes');
+
+    // Default state
     this.state = {
-      var: 0
+      nodes: []
     };
 
     this.onNodeDialogLoad = this.onNodeDialogLoad.bind(this);
     this.loadSigmaRender = this.loadSigmaRender.bind(this);
   };
+
+  componentDidMount() {
+    // Refresh state on value changes
+    this.database.on('value', snap => {
+      this.setState({
+        nodes: snap.val()
+      });
+    console.log(this.state.nodes)
+    });
+  }
 
   onNodeDialogLoad() {
     console.log('loaded');
@@ -45,6 +63,8 @@ class App extends Component {
            </Modal.Content>  
         </Modal>
         <Button onClick={this.loadSigmaRender}>Load</Button>
+
+        <p></p>
 
         <div id="nodemap"></div>
       </div>
