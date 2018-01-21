@@ -131,6 +131,8 @@ class App extends Component {
   componentDidMount() {
     // Refresh state on value changes
     this.database.on('value', snap => {
+      console.log('event listener');
+      ReactDOM.unmountComponentAtNode(document.getElementById('nodeMap'));
       this.setState({
         nodes: snap.val()
       });
@@ -169,12 +171,12 @@ class App extends Component {
             <Menu.Item name='camera'>
               <a href='#'>About</a>
             </Menu.Item>
-            <div style={{ position: 'absolute', zIndex: '99', top: '10px', left: '10px', color: 'white'}}><i class="sidebar icon" onClick={this.toggleVisibility}></i></div>
+            <div style={{ position: 'absolute', zIndex: '99', top: '10px', left: '10px', color: 'white'}}><i className="sidebar icon" onClick={this.toggleVisibility}></i></div>
           </Sidebar>
           <Sidebar.Pusher>
             <Segment basic>
               <div id="nodeMap"></div>
-              <div style={{ position: 'absolute', zIndex: '99', top: '10px', left: '10px', color: 'black'}}><i class="sidebar icon" onClick={this.toggleVisibility}></i></div>
+              <div style={{ position: 'absolute', zIndex: '99', top: '10px', left: '10px', color: 'black'}}><i className="sidebar icon" onClick={this.toggleVisibility}></i></div>
             </Segment>
           </Sidebar.Pusher>
         </Sidebar.Pushable>
