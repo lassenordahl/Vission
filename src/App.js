@@ -24,12 +24,13 @@ class App extends Component {
 
     // Default state
     this.state = {
-      nodes: []
+      nodes: {},
+      newNodes: {}
     };
 
     this.onNodeDialogLoad = this.onNodeDialogLoad.bind(this);
-    this.loadNodeDialog = this.loadNodeDialog.bind(this);
     this.loadSigmaRender = this.loadSigmaRender.bind(this);
+    this.helper = this.helper.bind(this);
   };
 
   helper(nodes) {
@@ -68,6 +69,8 @@ class App extends Component {
       }
     */
 
+    console.log(nodes);
+
     var new_nodes = {
       "nodes" : [],
       "edges" : []
@@ -99,8 +102,10 @@ class App extends Component {
         }
       }
     }
-
-    return new_nodes;
+    this.setState({
+      newNodes: new_nodes
+    });
+    this.loadSigmaRender();
   };
 
   componentDidMount() {
@@ -109,6 +114,7 @@ class App extends Component {
       this.setState({
         nodes: snap.val()
       });
+      this.helper(this.state.nodes);
     });
   }
 
@@ -116,12 +122,8 @@ class App extends Component {
     console.log('loaded');
   };
 
-  loadNodeDialog() {
-    ReactDOM.render(<NodeDialog/>, document.getElementById('nodeDialog'));
-  };
-
   loadSigmaRender() {
-    ReactDOM.render(<NodeMap/>, document.getElementById('nodeMap'));
+    ReactDOM.render(<NodeMap nodes={this.state.newNodes}/>, document.getElementById('nodeMap'));
   };
 
   render() {
@@ -142,10 +144,6 @@ class App extends Component {
           <Sidebar.Pusher>
             <Segment basic>
               <Header as='h3'>Application Content</Header>
-                <Button onClick={this.loadNodeDialog}>Load NodeDialog</Button>
-                <Button onClick={this.loadSigmaRender}>Load Sigma</Button>
-
-                <div id="nodeDialog"></div>
                 <div id="nodeMap"></div>
             </Segment>
           </Sidebar.Pusher>
