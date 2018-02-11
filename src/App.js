@@ -27,7 +27,8 @@ class App extends Component {
       nodes: {},
       newNodes: {},
       sidebarVisible: true,
-      aboutVisibile: false
+      aboutVisibile: false,
+      login: ""
     };
 
     this.onNodeDialogLoad = this.onNodeDialogLoad.bind(this);
@@ -35,7 +36,7 @@ class App extends Component {
     this.helper = this.helper.bind(this);
     this.toggleSidebarVisibility = this.toggleSidebarVisibility.bind(this);
     this.toggleAboutVisibility = this.toggleAboutVisibility.bind(this);
-    
+    this.handleChange = this.handleChange.bind(this);
   };
 
   colorLuminance(hex, lum) {
@@ -57,8 +58,12 @@ class App extends Component {
      return rgb;
    }
 
-  
-  
+  handleChange(ev) { 
+    console.log(ev.target.value);
+    this.setState({
+      login: ev.target.value
+    });
+  };
 
   helper(nodes) {
 
@@ -192,14 +197,14 @@ class App extends Component {
             <Header icon='comments' content='Choose a username.' />
             <Modal.Content>
               <p>Choose a username to use when chatting in the Vission.</p>
-              <div class='ui input'><input type="text" placeholder="Type here..." /></div>
+              <div class='ui input'><input type="text" value={this.state.login} onChange={this.handleChange} placeholder="Login" /></div>
             </Modal.Content>
             <Modal.Actions>
               <Button color='red' inverted>
                 <Icon name='trash' /> Cancel
               </Button>
               <Button color='green' inverted>
-                <Icon name='checkmark' /> Submit
+                <Icon name='checkmark'/> Submit
               </Button>
             </Modal.Actions>
           </Modal>
@@ -216,10 +221,10 @@ class App extends Component {
               </div>
             <div style={{ position: 'absolute', zIndex: '99', top: '10px', left: '10px', color: 'white'}}><i className="sidebar icon" onClick={this.toggleSidebarVisibility}></i></div>
           </Sidebar>
-          <div class='ui modal' id='loginModal'></div>
+          <div className='ui modal' id='loginModal'></div>
           <Sidebar.Pusher>
             <Segment basic>
-              <div id="nodeMap"></div>
+              <div login={this.state.login} id="nodeMap"></div>
               <div style={{ position: 'absolute', zIndex: '99', top: '10px', left: '10px', color: 'black'}}><i className="sidebar icon" onClick={this.toggleSidebarVisibility}></i></div>
             </Segment>
           </Sidebar.Pusher>
