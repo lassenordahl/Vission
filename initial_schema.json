@@ -1,0 +1,92 @@
+{
+  "nodes" : {
+    "-K2ib4H77rj0LYewF7dP" : {
+      "title" : "Music",
+      "popularity" : "14",
+      "parentid" : ""
+    },
+    "-K2ib5JHRbbL0NrztUfO" : {
+      "title" : "Brockhampton",
+      "popularity" : "2",
+      "parentid" : "-K2ib4H77rj0LYewF7dP"
+    },
+    "-K2ib5JHRbbL0NrztUtx" : {
+      "title" : "Kanye West",
+      "popularity" : "4",
+      "parentid" : "-K2ib4H77rj0LYewF7dP"
+    },
+    "-K2ib5JHRbbL0NrztUtr" : {
+      "title" : "Kesha",
+      "popularity" : "3",
+      "parentid" : "-K2ib4H77rj0LYewF7dP"
+    },
+    "-K2ib5JHRbbL0NrztUbj" : {
+      "title" : "Lil Pump",
+      "popularity" : "8",
+      "parentid" : "-K2ib4H77rj0LYewF7dP"
+    },
+    "-K2ib5JHRbbL0NrxtUtr" : {
+      "title" : "Lil Uzi Vert",
+      "popularity" : "5",
+      "parentid" : "-K2ib4H77rj0LYewF7dP"
+    },
+    "-K2ib5JYRbbL0NrxtUtr" : {
+      "title" : "Future",
+      "popularity" : "6",
+      "parentid" : "-K2ib4H77rj0LYewF7dP"
+    },
+    "-K2ib5JYRpbL0NdxtUtr" : {
+      "title" : "Drake",
+      "popularity" : "9",
+      "parentid" : "-K2ib4H77rj0LYewF7dP"
+    },
+    "-K2ib5JYRpbL0NrxtUtr" : {
+      "title" : "Scary Hours?",
+      "popularity" : "7",
+      "parentid" : "-K2ib5JYRpbL0NdxtUtr"
+    },
+    "-K2ib5JHRbbL0NrztUoj" : {
+      "title" : "Smokeppurp",
+      "popularity" : "3",
+      "parentid" : "-K2ib5JHRbbL0NrztUbj"
+    },
+    "-K2ib5JHRbbL0NrztUdg" : {
+      "title" : "Fredo Santana",
+      "popularity" : "2",
+      "parentid" : "-K2ib4H77rj0LYewF7dP"
+    },
+    "-K2ib62mjHh34CAUbide" : {
+      "title" : "Tide Pods",
+      "popularity" : "3",
+      "parentid" : ""
+    }
+  },
+  "node_info" : {
+    "-K2ib4H77rj0LYewF7dP" : {
+      "body" : "General discussion of enjoyable audio.",
+      "messages" : {
+        "-K2ib4H77rj0LrJKewF7dP" : {
+          "text" : "Hello",
+          "name" : "Jimbo"
+        },
+        "-K2ib5JHRbbL0NrdUtUfO" : {
+          "text" : "I fw Lilliam Pumpernickel",
+          "name" : "GoodDoggo2018"
+        },
+        "-K2ib62mjHsJ34CAUbide" : {
+          "text" : "Dale!",
+          "name" : "Pitbull"
+        }
+      }
+    },
+    "-K2ib5JHRbbL0NrztUbj" : {
+      "body" : "Lil Pump is a child prodigy. At a mere three years of age, he was able to fully master the English language. When he turned five, he enrolled at Hamburger State University. There, he earned his bachelors degree in Lyrical Composition with a concentration in mumble rap.  By six, he had mastered calculus and started writing PhD level academic papers. While he struggled a bit with integral calculus, he figured it out through dedication and hardwork over almost twenty-three minutes. In one of his papers, he addresses a mathematical application of music that transcends human logic, acting as the spark for his music career. But before he could start on his journey to musical stardom, he resolved to finish his PhD.  By eight, his intellectual capacity had exceeded that of an average twenty-eight and a half year old. Realising his prodigious growth, Lil Pump thought he should spend some time in self reflection to get a better grasp on what he could expect of himself in future. So, he went to the Himalayas for 7 years to find himself. There, he interacted with thirty-five yetis and managed to convince the Hindu god, Shiva to add him on Snapchat.  After returning, Lil Pump kept his accomplishments secret, so people won t make a big deal out of them. He s always been the modest type.  Finally, he started his music career. Having attained the status of a superhuman entity, nothing he has recently said seems to be comprehensible.  Coming to your question, no, he did not drop out of Harvard. But that s irrelevant. Continuing with his story:  His recent hit, Gucci Gang, is a work of art that scholars at top institutions around the world have failed to decipher. Lines from that lyrical masterpiece such as:  Gucci Gang Gucci gang Gucci gang Gucci gang Gucci gang Gucci gang Gucci gang and mah bih luh do cocaine have felt academicians puzzled as to their true meaning, with seventeen Harvard professor having committed suicide after realising their relative inferiority as compared to the god-man himself.",
+      "messages" : {
+        "-K2ib4H77rj0LrJKywF7dP" : {
+          "text" : "ESKEDDIT",
+          "name" : "Smokeppurp"
+        }
+      }
+    }
+  }
+}
